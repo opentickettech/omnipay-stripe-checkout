@@ -1,6 +1,6 @@
 <?php
 
-namespace Omnipay\StripeTests;
+namespace Omnipay\StripeTests\Messages;
 
 use Omnipay\Common\Http\Client;
 use Omnipay\StripeCheckout\Messages\RefundRequest;
