@@ -49,6 +49,22 @@ class FetchTransactionRequestTest extends TestCase
 
         $this->assertFalse($response->isSuccessful());
         $this->assertFalse($response->isCancelled());
+        $this->assertTrue($response->isPending());
+        $this->assertNull($response->getMessage());
+        $this->assertNull($response->getCode());
+        $this->assertSame('transaction_id_fetch_transaction_request_test', $response->getTransactionId());
+    }
+    public function testPaymentIntentPaymentPending()
+    {
+        $response_string = (string) $this->getMockHttpResponse('PaymentIntentPaymentPending.txt')->getBody();
+        $this->client->setMockResponseBody($response_string);
+
+        $response = $this->request->send();
+        $this->assertInstanceOf(FetchTransactionResponse::class, $response);
+
+        $this->assertFalse($response->isSuccessful());
+        $this->assertFalse($response->isCancelled());
+        $this->assertTrue($response->isPending());
         $this->assertNull($response->getMessage());
         $this->assertNull($response->getCode());
         $this->assertSame('transaction_id_fetch_transaction_request_test', $response->getTransactionId());

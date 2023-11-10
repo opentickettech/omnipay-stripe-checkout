@@ -42,6 +42,9 @@ class PurchaseResponse extends AbstractResponse implements RedirectResponseInter
                 || $this->session->payment_status == $this->session::PAYMENT_STATUS_NO_PAYMENT_REQUIRED)
                 && $this->session->status == $this->session::STATUS_COMPLETE;
     }
+    public function isPending() {
+        return $this->isRedirect();
+    }
 
     public function isRedirect() {
         return !empty($this->session->url);

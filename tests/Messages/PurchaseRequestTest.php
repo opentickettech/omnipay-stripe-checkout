@@ -46,6 +46,7 @@ class PurchaseRequestTest extends TestCase
 
         $this->assertFalse($response->isSuccessful());
         $this->assertTrue($response->isRedirect());
+        $this->assertTrue($response->isPending());
         $this->assertSame('redirect_url_session_created', $response->getRedirectUrl());
         $this->assertSame('GET', $response->getRedirectMethod());
         $this->assertSame('payment_intent_id_session_created', $response->getTransactionReference());

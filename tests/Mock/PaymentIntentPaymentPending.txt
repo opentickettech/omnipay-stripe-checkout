@@ -1,0 +1,80 @@
+HTTP/1.1 200 OK
+Server: nginx
+Date: Tue, 7 Nov 2023 21:37:26 GMT
+Content-Type: application/json
+Cache-Control: no-cache, no-store
+
+{
+	"paymentIntent": {
+		"id": "pi_3OAsu94Clds3ZoJo0IMC0s0s",
+		"object": "payment_intent",
+		"allowed_source_types": [
+			"klarna",
+			"ideal",
+			"card"
+		],
+		"amount": 500,
+		"amount_capturable": 0,
+		"amount_details": {
+			"tip": []
+		},
+		"amount_received": 0,
+		"application": null,
+		"application_fee_amount": null,
+		"automatic_payment_methods": null,
+		"canceled_at": null,
+		"cancellation_reason": null,
+		"capture_method": "automatic",
+		"charges": {
+			"object": "list",
+			"data": [],
+			"has_more": false,
+			"total_count": 0,
+			"url": "\/v1\/charges?payment_intent=pi_3OAsu94Clds3ZoJo0IMC0s0s"
+		},
+		"client_secret": "pi_3OAsu94Clds3ZoJo0IMC0s0s_secret_EG2Mbp5jlHNTZKwV4UognHvOA",
+		"confirmation_method": "automatic",
+		"created": 1699615781,
+		"currency": "eur",
+		"customer": null,
+		"description": "1 Ticket for Stripe Event (2023-10-29 21:00) | openticket | order_id: 707e7e80-7fbc-11ee-bd58-39dd4db180dd | openticket",
+		"invoice": null,
+		"last_payment_error": null,
+		"latest_charge": null,
+		"livemode": false,
+		"metadata": [],
+		"next_action": null,
+		"next_source_action": null,
+		"on_behalf_of": null,
+		"payment_method": null,
+		"payment_method_configuration_details": null,
+		"payment_method_options": {
+			"card": {
+				"installments": null,
+				"mandate_options": null,
+				"network": null,
+				"request_three_d_secure": "automatic"
+			},
+			"ideal": [],
+			"klarna": {
+				"preferred_locale": null
+			}
+		},
+		"payment_method_types": [
+			"klarna",
+			"ideal",
+			"card"
+		],
+		"processing": null,
+		"receipt_email": null,
+		"review": null,
+		"setup_future_usage": null,
+		"shipping": null,
+		"source": null,
+		"statement_descriptor": null,
+		"statement_descriptor_suffix": null,
+		"status": "requires_source",
+		"transfer_data": null,
+		"transfer_group": null
+	}
+}

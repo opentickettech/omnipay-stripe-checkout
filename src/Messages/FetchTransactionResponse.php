@@ -36,6 +36,10 @@ class FetchTransactionResponse extends AbstractResponse {
             && $this->payment_intent->status == PaymentIntent::STATUS_CANCELED;
     }
 
+    public function isPending() {
+        return !$this->isSuccessful() && !$this->isCancelled();
+    }
+
     public function getMessage() {
         return isset($this->payment_intent) && isset($this->payment_intent->last_payment_error)
             && isset($this->payment_intent->last_payment_error->message)
