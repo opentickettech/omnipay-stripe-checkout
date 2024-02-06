@@ -9,7 +9,7 @@ use Stripe\Checkout\Session;
 
 /**
  * This payment gateway is essentially a "soft" redirect. In other words, the client makes a purchase request, then
- * displays a page whch uses JavaScript to redirect.
+ * displays a page which uses JavaScript to redirect.
  * The methods in this class have to reflect that.
  */
 class PurchaseResponse extends AbstractResponse implements RedirectResponseInterface {
@@ -22,7 +22,7 @@ class PurchaseResponse extends AbstractResponse implements RedirectResponseInter
     public function __construct(RequestInterface $request, $data) {
         parent::__construct($request, $data);
 
-        if (isset($data['session']) && $data['session'] instanceof Session) {
+        if (isset($data) && isset($data['session']) && $data['session'] instanceof Session) {
             $this->setSession($data['session']);
         } else {
             throw new \InvalidArgumentException('A valid Session must be supplied');
@@ -38,11 +38,16 @@ class PurchaseResponse extends AbstractResponse implements RedirectResponseInter
     }
 
     public function isSuccessful() {
-        return false;
+        return ($this->session->payment_status == $this->session::PAYMENT_STATUS_PAID
+                || $this->session->payment_status == $this->session::PAYMENT_STATUS_NO_PAYMENT_REQUIRED)
+                && $this->session->status == $this->session::STATUS_COMPLETE;
+    }
+    public function isPending() {
+        return $this->isRedirect();
     }
 
     public function isRedirect() {
-        return true;
+        return !empty($this->session->url);
     }
 
     public function getRedirectUrl(): string {
